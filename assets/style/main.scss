@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+$color-black : #2f3542;
+$color-white : #fff;
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+.app {
+    .descriptive {
+        &[page='index'] {
+            background-color: $color-black;
+            min-height: 100vh;
+            padding: 2.000em;
+
+            .descriptive {
+                &[section='title'] {
+                    margin: 3.000em 0 5.000em 0;
+
+                    h1 {
+                        color: $color-white;
+                        text-align: center;
+                        font-size: 3.800em;
+                    }
+                }
+
+                &[section='subtitle'] {
+                    margin-bottom: 2.000em;
+
+                    h3 {
+                        color: $color-white;
+                        font-size: 1.800em;
+                    }
+                }
+
+                &[section='cards'] {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    flex-basis: 100%;
+                    align-content: flex-start;
+                    margin: -1.000em 0;
+                    margin-bottom: 4.000em;
+
+                    .card {
+                        padding: 2.000em;
+                        border-radius: .412em;
+                        flex-basis: 18%;
+                        background-color: $color-white;
+                        flex-grow: unset;
+                        margin: 1.000em 0;
+                    }
+                }
+
+                &[section='shapes'] {
+                    background-color: #0652DD;
+                    padding: 2.000em;
+                    border-radius: .412em;
+                    margin-bottom: 4.000em;
+
+                    .rectangle {
+                        width: 20.000em;
+                        height: 5.000em;
+                        border-radius: .412em;
+                        background-color: $color-white;
+                    }
+
+                    .square {
+                        width: 5.000em;
+                        height: 5.000em;
+                        border-radius: .412em;
+                        background-color: $color-white;
+
+                    }
+
+                    .circle {
+                        width: 5.000em;
+                        margin: 4.000em 0;
+                        height: 5.000em;
+                        border-radius: 50%;
+                        background-color: $color-white;
+                    }
+                }
+
+                &[section='actions'] {
+                    padding: 2.000em;
+                    background-color: #0652DD;
+                    margin-bottom: 4.000em;
+                    border-radius: .412em;
+
+                    .action {
+                        &:not(:last-child) {
+                            margin-bottom: 3.0000em;
+                        }
+
+                        button {
+                            background-color: $color-white;
+                            border: none;
+                            outline: none;
+                            font-family: 'Nunito';
+                            border-radius: .312em;
+                            padding: 1.000em 2.000em;
+                            font-size: 1.400em;
+                            color: #0652DD;
+                            transition: all .5s ease;
+
+                            &:hover {
+                                transform: scale(1.02);
+                            }
+
+                            &:active {
+                                transform: scale(.95);
+                            }
+                        }
+
+                        .box {
+                            background-color: $color-white;
+                            width: 20.000em;
+                            height: 5.000em;
+                            border-radius: .312em;
+                            margin-top: 2.000em;
+                        }
+
+                        .alert {
+                            background-color: $color-white;
+                            position: fixed;
+                            bottom: 4.000em;
+                            right: -8.000em;
+                            padding: 2.000em;
+                            border-radius: .312em;
+                            opacity: 0;
+
+                            h3 {
+                                color: #0652DD;
+                                font-size: 1.300em;
+                            }
+                        }
+
+                        .products {
+                            display: flex;
+
+                            .product {
+                                position: relative;
+                                background-color: $color-white;
+                                padding: 1.800em;
+                                border-radius: .412em;
+                                display: flex;
+                                flex-wrap: wrap;
+                                align-items: center;
+								overflow: hidden;
+                                .title {
+                                    flex-basis: 100%;
+                                }
+
+                                .visual {
+                                    img {
+                                        margin: 1.000em 0;
+                                        width: 10.000em;
+                                        height: 10.000em;
+                                        object-fit: cover;
+                                        border-radius: .412em;
+                                    }
+                                }
+
+                                .text {
+                                    margin-left: 2.000em;
+									position: relative;
+									z-index: 1;
+                                    p {
+                                        margin-top: .500em;
+                                        font-size: 1.200em;
+                                    }
+                                }
+
+                                .splat {
+                                    position: absolute;
+                                    top: 1.500em;
+                                    right: 1.500em;
+
+                                    .ban {
+                                        background-color: #e58e26;
+                                        width: 4.000em;
+                                        height: 4.000em;
+                                        border-radius: 50%;
+                                        display: flex;
+                                        align-items: center;
+										justify-content: center;
+										z-index: 0;
+
+                                        h5 {
+                                            color: $color-white;
+                                            font-size: 1.200em;
+                                        }
+                                    }
+								}
+								.buy {
+									position: absolute;
+									bottom: 1.500em;
+									right: 1.500em;
+									button {
+										background-color: $color-white;
+										color: #e58e26;
+										opacity: 0;
+									}
+								}
+                            }
+                        }
+
+                    }
+                }
+
+                &[section='svgs'] {
+                    padding: 2.000em;
+                    background-color: #0652DD;
+                    margin-bottom: 4.000em;
+                    border-radius: .412em;
+
+                    .svg {
+                        display: flex;
+                        justify-content: center;
+
+                        svg {
+                            width: 1006px;
+                            height: 260px;
+                            transform: scale(.8);
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}

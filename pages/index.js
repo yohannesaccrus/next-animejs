@@ -1,203 +1,287 @@
-import Head from 'next/head'
+import React, { useEffect, useState } from 'react'
+const anime = require('animejs/lib/anime.js')
 
-const Home = () => (
-  <div className="container">
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+import SVG from './svg/svg'
 
-    <main>
-      <h1 className="title">
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
+const Home = () => {
+  const [long, setLong] = useState(true)
+  const data = [
+    {
+      id: 1,
+      content: 'This is Card',
+    },
+    {
+      id: 2,
+      content: 'This is Card',
+    },
+    {
+      id: 3,
+      content: 'This is Card',
+    },
+    {
+      id: 4,
+      content: 'This is Card',
+    },
+    {
+      id: 5,
+      content: 'This is Card',
+    },
+    {
+      id: 6,
+      content: 'This is Card',
+    },
+    {
+      id: 7,
+      content: 'This is Card',
+    },
+    {
+      id: 8,
+      content: 'This is Card',
+    },
+    {
+      id: 9,
+      content: 'This is Card',
+    },
+    {
+      id: 10,
+      content: 'This is Card',
+    },
+    {
+      id: 11,
+      content: 'This is Card',
+    },
+    {
+      id: 12,
+      content: 'This is Card',
+    },
+    {
+      id: 13,
+      content: 'This is Card',
+    },
+    {
+      id: 14,
+      content: 'This is Card',
+    },
+    {
+      id: 15,
+      content: 'This is Card',
+    },
+  ]
 
-      <p className="description">
-        Get started by editing <code>pages/index.js</code>
-      </p>
+  const animateStagger = () => {
+    anime({
+      targets: '.card',
+      opacity: [0, 1],
+      scale: [0.8, 1],
+      delay: anime.stagger(400),
+      easing: 'spring(1, 80, 10, 0)',
+      duration: 1000,
+      loop: true,
+      direction: 'alternate',
+    })
+  }
 
-      <div className="grid">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+  const animateTimeline = () => {
+    let timeline = anime.timeline({
+      easing: 'spring(1, 80, 10, 0)',
+      duration: 500,
+      loop: true,
+      direction: 'alternate',
+    })
+    timeline
+      .add({
+        targets: '.rectangle',
+        translateX: 400,
+      })
+      .add({
+        targets: '.circle',
+        translateX: 250,
+      })
+      .add({
+        targets: '.square',
+        translateX: 250,
+      })
+  }
 
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
+  const animateProduct = (direction) => {
+    if (direction === 'in') {
+      anime({
+        targets: '.ban',
+        translateY: 50,
+        scale: 10,
+        easing: 'spring(1, 80, 10, 0)',
+        duration: 500,
+      })
+      anime({
+        targets: '.ban h5',
+        opacity: 0,
+        easing: 'spring(1, 80, 10, 0)',
+        duration: 500,
+      })
+      anime({
+        targets: '.buy button',
+        scale: 1,
+        opacity: 1,
+        easing: 'spring(1, 80, 10, 0)',
+        duration: 100,
+      })
+    } else {
+      anime({
+        targets: '.ban',
+        translateY: 0,
+        scale: 1,
+        easing: 'spring(1, 80, 10, 0)',
+        duration: 500,
+      })
+      anime({
+        targets: '.ban h5',
+        opacity: 1,
+        easing: 'spring',
+        duration: 500,
+      })
+      anime({
+        targets: '.buy button',
+        scale: 0.9,
+        opacity: 0,
+        easing: 'spring',
+        duration: 100,
+      })
+    }
+  }
 
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
+  const actionExpand = () => {
+    if (long) {
+      anime({
+        targets: '.box.action1',
+        width: '40.000em',
+        easing: 'spring(1, 80, 10, 0)',
+        duration: 1500,
+      })
+      setLong(false)
+    } else {
+      anime({
+        targets: '.box.action1',
+        width: '20.000em',
+        easing: 'spring(1, 80, 10, 0)',
+        duration: 1500,
+      })
+      setLong(true)
+    }
+  }
 
-        <a
-          href="https://zeit.co/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          className="card"
-        >
-          <h3>Deploy &rarr;</h3>
-          <p>
-            Instantly deploy your Next.js site to a public URL with ZEIT Now.
-          </p>
-        </a>
+  const actionAlert = () => {
+    anime({
+      targets: '.alert',
+      opacity: 1,
+      right: '4.000em',
+      duration: 3000,
+    })
+    setTimeout(() => {
+      anime({
+        targets: '.alert',
+        opacity: 0,
+        right: '-8.000em',
+        duration: 3000,
+      })
+    }, 4000)
+  }
+
+  const animateSVGPath = () => {
+    anime({
+      targets: '.sipp path',
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: 'easeInOutQuad',
+      duration: 8000,
+      direction: 'alternate',
+      loop: true,
+    })
+  }
+
+  useEffect(() => {
+    animateStagger()
+    animateTimeline()
+    animateSVGPath()
+  }, [])
+
+  return (
+    <div className={'app'}>
+      <div className={'descriptive'} page={'index'}>
+        <div className={'descriptive'} section={'title'}>
+          <h1>animeJS</h1>
+        </div>
+        <div className={'descriptive'} section={'subtitle'}>
+          <h3>Stagger</h3>
+        </div>
+        <div className={'descriptive'} section={'cards'}>
+          {data.map((card) => (
+            <div className={'card'} key={card.id}>
+              <h1>Card {card.id}</h1>
+              <p>{card.content}</p>
+            </div>
+          ))}
+        </div>
+        <div className={'descriptive'} section={'subtitle'}>
+          <h3>Timeline</h3>
+        </div>
+        <div className={'descriptive'} section={'shapes'}>
+          <div className={'rectangle'} />
+          <div className={'circle'} />
+          <div className={'square'} />
+        </div>
+        <div className={'descriptive'} section={'subtitle'}>
+          <h3>Actions - with state</h3>
+        </div>
+        <div className={'descriptive'} section={'actions'}>
+          <div className={'action'}>
+            <button onClick={() => actionExpand(long)}>
+              Click to {long ? 'expand' : 'shrink'}
+            </button>
+            <div className={'box action1'}></div>
+          </div>
+          <div className={'action'}>
+            <button onClick={() => actionAlert()}>Show alert</button>
+            <div className={'alert'}>
+              <h3>Looks like you've seen me now !</h3>
+            </div>
+          </div>
+          <div className={'action'}>
+            <div className={'products'}>
+              <div
+                className={'product'}
+                onMouseEnter={() => animateProduct('in')}
+                onMouseLeave={() => animateProduct('out')}
+              >
+                <h1 className={'title'}>Let's have a caffee!</h1>
+                <div className={'visual'}>
+                  <img src={'https://bit.ly/3brk1t1'} />
+                </div>
+                <div className={'text'}>
+                  <h1>Kopi Tubruk Dalgona</h1>
+                  <p>
+                    The best coffee with great taste and aesthetic and also
+                    corona in its each drop.
+                  </p>
+                </div>
+                <div className={'splat'}>
+                  <div className={'ban'}>
+                    <h5>Try!</h5>
+                  </div>
+                </div>
+                <div className={'buy'}>
+                  <button>Buy Now !</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={'descriptive'} section={'svgs'}>
+          <div className={'svg'}>
+            <SVG />
+          </div>
+        </div>
       </div>
-    </main>
-
-    <footer>
-      <a
-        href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
-      </a>
-    </footer>
-
-    <style jsx>{`
-      .container {
-        min-height: 100vh;
-        padding: 0 0.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      main {
-        padding: 5rem 0;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-
-      footer {
-        width: 100%;
-        height: 100px;
-        border-top: 1px solid #eaeaea;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      footer img {
-        margin-left: 0.5rem;
-      }
-
-      footer a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .title a {
-        color: #0070f3;
-        text-decoration: none;
-      }
-
-      .title a:hover,
-      .title a:focus,
-      .title a:active {
-        text-decoration: underline;
-      }
-
-      .title {
-        margin: 0;
-        line-height: 1.15;
-        font-size: 4rem;
-      }
-
-      .title,
-      .description {
-        text-align: center;
-      }
-
-      .description {
-        line-height: 1.5;
-        font-size: 1.5rem;
-      }
-
-      code {
-        background: #fafafa;
-        border-radius: 5px;
-        padding: 0.75rem;
-        font-size: 1.1rem;
-        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-      }
-
-      .grid {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-
-        max-width: 800px;
-        margin-top: 3rem;
-      }
-
-      .card {
-        margin: 1rem;
-        flex-basis: 45%;
-        padding: 1.5rem;
-        text-align: left;
-        color: inherit;
-        text-decoration: none;
-        border: 1px solid #eaeaea;
-        border-radius: 10px;
-        transition: color 0.15s ease, border-color 0.15s ease;
-      }
-
-      .card:hover,
-      .card:focus,
-      .card:active {
-        color: #0070f3;
-        border-color: #0070f3;
-      }
-
-      .card h3 {
-        margin: 0 0 1rem 0;
-        font-size: 1.5rem;
-      }
-
-      .card p {
-        margin: 0;
-        font-size: 1.25rem;
-        line-height: 1.5;
-      }
-
-      @media (max-width: 600px) {
-        .grid {
-          width: 100%;
-          flex-direction: column;
-        }
-      }
-    `}</style>
-
-    <style jsx global>{`
-      html,
-      body {
-        padding: 0;
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-    `}</style>
-  </div>
-)
+    </div>
+  )
+}
 
 export default Home
